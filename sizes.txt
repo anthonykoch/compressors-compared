@@ -1,13 +1,13 @@
- 862 kb leaves.jpeg                      
- 253 kb leaves-tinypng.jpeg              
- 573 kb leaves-recompress-medium.jpeg    
- 185 kb leaves-recompress-low.jpeg       
-1002 kb leaves-mozjpeg.jpeg              
- 391 kb leaves-mozjpeg-low.jpeg          
- 815 kb leaves-jpegtran.jpeg             
- 812 kb leaves-jpegtran-progressive.jpeg 
- 358 kb leaves-imageoptim.jpg            
- 611 kb leaves-compressorio.jpeg         
+ 862 kb leaves.jpg                      
+ 253 kb leaves-tinypng.jpg              
+ 573 kb leaves-recompress-medium.jpg    
+ 185 kb leaves-recompress-low.jpg       
+1002 kb leaves-mozjpeg.jpg              
+ 391 kb leaves-mozjpeg-low.jpg          
+ 815 kb leaves-jpegtran.jpg             
+ 812 kb leaves-jpegtran-progressive.jpg 
+ 358 kb leaves-imageoptim.jpg           
+ 611 kb leaves-compressorio.jpg         
 
  962 kb workharder.jpg                      
  228 kb workharder-tinypng.jpg              
@@ -20,16 +20,16 @@
  299 kb workharder-imageoptim.jpg           
  531 kb workharder-compressorio.jpg         
 
-308 kb pancakes.jpeg                      
-136 kb pancakes-tinypng.jpeg              
-247 kb pancakes-recompress-medium.jpeg    
-129 kb pancakes-recompress-low.jpeg       
-462 kb pancakes-mozjpeg.jpeg              
-191 kb pancakes-mozjpeg-low.jpeg          
-297 kb pancakes-jpegtran.jpeg             
-283 kb pancakes-jpegtran-progressive.jpeg 
-170 kb pancakes-imageoptim.jpg            
-234 kb pancakes-compressorio.jpeg         
+308 kb pancakes.jpg                      
+136 kb pancakes-tinypng.jpg              
+247 kb pancakes-recompress-medium.jpg    
+129 kb pancakes-recompress-low.jpg       
+462 kb pancakes-mozjpeg.jpg              
+191 kb pancakes-mozjpeg-low.jpg          
+297 kb pancakes-jpegtran.jpg             
+283 kb pancakes-jpegtran-progressive.jpg 
+170 kb pancakes-imageoptim.jpg           
+234 kb pancakes-compressorio.jpg         
 
 1174 kb flowers.jpg                      
  329 kb flowers-tinypng.jpg              
