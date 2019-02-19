@@ -11,9 +11,7 @@ const jpegtran = exports.jpegtran = function jpegtran() {
     .pipe(imagemin([
       imageminJpegtran(),
     ]))
-    .pipe(rename({
-      suffix: '-jpegtran',
-    }))
+    .pipe(rename(createPath('.[jpegtran]')))
     .pipe(gulp.dest('build/jpegtran'))
 };
 
@@ -22,9 +20,7 @@ const jpegtranprogressive = exports.jpegtranprogressive = function jpegtranprogr
     .pipe(imagemin([
       imageminJpegtran({ progressive: true }),
     ]))
-    .pipe(rename({
-      suffix: '-jpegtran-progressive',
-    }))
+    .pipe(rename(createPath('.[jpegtran-progressive]')))
     .pipe(gulp.dest('build/jpegtran-progressive'))
 };
 
@@ -37,9 +33,7 @@ const recompresslow = exports.recompresslow = function recompresslow() {
         quality: 'low',
       }),
     ]))
-    .pipe(rename({
-      suffix: '-recompress-low',
-    }))
+    .pipe(rename(createPath('.[recompress-low]')))
     .pipe(gulp.dest('build/recompress-low'))
 };
 
@@ -52,9 +46,7 @@ const recompressmedium = exports.recompressmedium = function recompressmedium() 
         quality: 'medium',
       }),
     ]))
-    .pipe(rename({
-      suffix: '-recompress-medium',
-    }))
+    .pipe(rename(createPath('.[recompress-medium]')))
     .pipe(gulp.dest('build/recompress-medium'))
 };
 
@@ -66,23 +58,19 @@ const pngquant = exports.pngquant = function pngquant() {
         quality: [.6, .8],
       }),
     ]))
-    .pipe(rename({
-      suffix: '-pngquant',
-    }))
+    .pipe(rename(createPath('.[pngquant]')))
     .pipe(gulp.dest('build/pngquant'))
 };
 
-const mozjpeglow = exports.mozjpeglow = function mozjpeglow() {
+const mozjpegmedium = exports.mozjpegmedium = function mozjpegmedium() {
   return gulp.src('./images/*')
     .pipe(imagemin([
       imageminMozjpeg({
         quality: 80,
       }),
     ]))
-    .pipe(rename({
-      suffix: '-mozjpeg-low',
-    }))
-    .pipe(gulp.dest('build/mozjpeg-low'))
+    .pipe(rename(createPath('.[mozjpeg-medium]')))
+    .pipe(gulp.dest('build/mozjpeg-medium'))
 };
 
 const mozjpeg = exports.mozjpeg = function mozjpeg() {
@@ -92,9 +80,7 @@ const mozjpeg = exports.mozjpeg = function mozjpeg() {
         quality: 95,
       }),
     ]))
-    .pipe(rename({
-      suffix: '-mozjpeg',
-    }))
+    .pipe(rename(createPath('.[mozjpeg]')))
     .pipe(gulp.dest('build/mozjpeg'))
 };
 
@@ -104,5 +90,10 @@ exports.default = gulp.parallel(
   jpegtran, 
   jpegtranprogressive,
   mozjpeg,
-  mozjpeglow,
+  mozjpegmedium,
 )
+
+const createPath = (name) => (path) => {
+  path.basename = path.basename.replace(/\.\[original\]/, '')
+  path.basename += name
+}

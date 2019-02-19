@@ -5,9 +5,15 @@
   "main": "gulpfile.js",
   "dependencies": {
     "array-flatten": "^2.1.2",
+    "cli-progress": "^2.1.1",
+    "ejs": "^2.6.1",
+    "escape-string-regexp": "^1.0.5",
+    "get-stdin": "^6.0.0",
     "glob": "^7.1.3",
+    "image-ssim": "^0.2.0",
     "imagemin-mozjpeg": "^8.0.0",
-    "table": "^5.2.3"
+    "markdown-table": "^1.1.2",
+    "ssim.js": "^3.0.0"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
@@ -18,9 +24,11 @@
     "imagemin-pngquant": "^7.0.0"
   },
   "scripts": {
-    "copy": "cp -r finals/tinypng build && cp -r finals/imageoptim build && cp -r finals/compressorio build && cp -r images build",
-    "build": "rm -rf build/* && gulp && npm run copy",
-    "size": "node size.js > sizes.txt"
+    "clean": "rm -rf build/*",
+    "copy": "cp -r images build && cp -r finals/* build",
+    "build": "npm run clean && gulp && npm run copy",
+    "readme": "cat readme-template.md | node scripts/create-size --output table --outfile readme.md",
+    "size": "node scripts/create-size --outfile size.html"
   },
   "keywords": [],
   "author": "",
