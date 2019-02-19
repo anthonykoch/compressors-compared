@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 
+const flatten = require('flatten')
 const argv = require('yargs').argv
 const glob = require('glob')
 const _cliProgress = require('cli-progress')
@@ -42,22 +43,22 @@ getStdin().then(stdin => {
     throw new Error('Output file not specified')
   }
   
-
   const outfileOption = 
     path.isAbsolute(argv.outfile)
       ? argv.outfile
       : path.join(process.cwd(), argv.outfile)
 
   const outfile = outfileOption || path.join(process.cwd(), 'size.html')
+  const chunks = getChunksFromFiles(chunknames, compressedFilenames)
 
-  bar.start(100, 0)
+  bar.start(flatten(Object.values(chunks)).length, 1)  
 
   generate(
-    getChunksFromFiles(chunknames, compressedFilenames),
+    chunks,
     originals, {
       output: argv.output || 'html',
-      onChunk(_, index, total) {
-        bar.update((index / total * 100).toFixed(0))
+      onChunk(_, index) {
+        bar.update((index).toFixed(0))
       },
     }
   )

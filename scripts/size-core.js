@@ -2,8 +2,9 @@
 
 const fs = require('fs')
 
+const flatten = require('flatten')
 const ssim = require('ssim.js/dist/ssim.js')
-const escapeStringRegexp = require('escape-string-regexp');
+const escapeStringRegexp = require('escape-string-regexp')
 const table = require('markdown-table')
 
 
@@ -111,9 +112,9 @@ const generate = exports.generate = async (
     output = 'html', 
   } = {},
 ) => {
-  const allFilesLength = Object.values(chunks).flat().length
+  const allFilesLength = flatten(Object.values(chunks)).length
   let completed = 0
-  
+    
   const promises =
     Object.entries(chunks)
       .map(async ([chunkname, filenames]) => {
@@ -133,6 +134,7 @@ const generate = exports.generate = async (
 
         for (const filename of filenames) {
           const { mssim } = await ssim(original, filename)
+          
           const item = {
             original: originalInfo,
             filename,
@@ -159,9 +161,15 @@ const generate = exports.generate = async (
         }
       })
 
-  const datas = await Promise.all(promises)
+  const datas = await Promise.all(promises).catch(err => {
+    console.log(err);
+    process.exit(1)
+  })
 
-  // console.log(require('util').inspect(datas, { depth: 20 }));
+  // console.log(require('util').inspect(datas, { depth: 20 }))
   
   return output === 'html' ? toHtmlTable(datas) : toAsciiTable(datas)
 }
+
+process.on('uncaughtException', console.log)
+process.on('unhandledRejection', console.log)
